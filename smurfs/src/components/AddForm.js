@@ -1,6 +1,39 @@
 import React, { useState } from "react";
 import { connect } from 'react-redux';
 import { addData } from '../actions';
+import styled from 'styled-components';
+
+const StyledForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+`;
+
+const StyledInput = styled.input`   
+    font-size: 15px;    
+    line-height: 25px;
+    border: 1px solid #EE2B07;
+    border-radius: 5px;
+    width: 200px;
+    margin: 10px auto;
+    padding-left: 5px;
+`;
+
+const StyledButton = styled.button`
+font-size: 20px;    
+border: 1px solid #EE2B07;
+    border-radius: 5px;
+    width: 150px;
+    margin: 20px auto;
+    padding: 5px;
+    color: black;
+    background-color: #DDD300;
+
+    :hover {
+        border: 1px solid black;
+        background-color: #EE2B07;
+    }
+`;
 
 const AddForm = props => {
     const [smurf, setSmurf] = useState({ name: "", age: "", height: "" });
@@ -35,18 +68,18 @@ const AddForm = props => {
 
         return (
             <div>
-                <form onSubmit={submitForm}>
+                <StyledForm onSubmit={submitForm}>
 
-                    <input
+                    <StyledInput
                         id="name"
                         type="text"
                         name="name"
-                        placeholder="Name"
+                        placeholder="name"
                         onChange={handleChanges}
                         value={smurf.name}
                         autoComplete='off'
                     />
-                    <input
+                    <StyledInput
                         id="age"
                         type="text"
                         name="age"
@@ -55,7 +88,7 @@ const AddForm = props => {
                         value={smurf.age}
                         autoComplete='off'
                     />
-                    <input
+                    <StyledInput
                         id="height"
                         type="text"
                         name="height"
@@ -64,8 +97,8 @@ const AddForm = props => {
                         value={smurf.height}
                         autoComplete='off'
                     />
-                    <button type="submit">Add Smurf</button>
-                </form>
+                    <StyledButton type="submit">Add Smurf</StyledButton>
+                </StyledForm>
             </div>
         );
     }

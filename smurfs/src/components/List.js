@@ -38,7 +38,7 @@ const List = props => {
     } else {
         return (
             <div>
-                <StyledLink to={`/add-form/`}>Add New Smurf</StyledLink>
+                <StyledLink to={`/add-form/`}>Add Villager</StyledLink>
                 <StyledList>
                     {props.smurfs.map(smurf => {
                         return <Card key={smurf.id} smurf={smurf} />
