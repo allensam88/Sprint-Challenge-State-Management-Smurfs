@@ -63,7 +63,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 isUpdating: false,
                 error: '',
-                smurfs: [...state.smurfs.filter(item => { return item.id !== action.payload.id }), action.payload]
+                smurfs: [...state.smurfs.filter(item => { return item.id !== action.payload.id}), action.payload]
             }
         case UPDATE_FAILURE:
             return {
@@ -83,7 +83,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 isDeleting: false,
                 error: '',
-                smurfs: state.smurfs.filter(item => { return item.id !== action.payload.id })
+                smurfs: state.smurfs.filter(item => { return item.id !== action.payload })
             }
         case DELETE_FAILURE:
             return {

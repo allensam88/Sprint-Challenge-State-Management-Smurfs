@@ -39,7 +39,7 @@ export const updateData = updatedSmurf => dispatch => {
     dispatch({ type: UPDATE_START });
 
     axios
-    .put(`http://localhost:3333/smurfs`, updatedSmurf)
+    .put(`http://localhost:3333/smurfs/${updatedSmurf.id}`, updatedSmurf)
     .then(res => dispatch({ type: UPDATE_SUCCESS, payload: res.data }))
     .catch(err => dispatch({ type: UPDATE_FAILURE, payload: err }))
 }
@@ -48,7 +48,7 @@ export const deleteData = smurf => dispatch => {
     dispatch({ type: DELETE_START });
 
     axios
-    .delete(`http://localhost:3333/smurfs`)
-    .then(res => dispatch({ type: DELETE_SUCCESS, payload: smurf }))
+    .delete(`http://localhost:3333/smurfs/${smurf.id}`)
+    .then(res => dispatch({ type: DELETE_SUCCESS, payload: smurf.id }))
     .catch(err => dispatch({ type: DELETE_FAILURE, payload: err }))
 }
