@@ -7,7 +7,8 @@ const Card = props => {
             <h3>{props.smurf.name}</h3>
             <p>{props.smurf.age}</p>
             <p>{props.smurf.height}</p>
-            <Link to={`/update-form/`}>edit</Link>
+            <Link to={{pathname: `/update-form/`, state: {smurf: props.smurf}}}>edit</Link>
+            <Link to={{pathname: `/delete/`, state: {smurf: props.smurf}}}>delete</Link>
         </div>
     )
 }

@@ -12,9 +12,9 @@ export const UPDATE_START = 'UPDATE_START';
 export const UPDATE_SUCCESS = 'UPDATE_SUCCESS';
 export const UPDATE_FAILURE = 'UPDATE_FAILURE';
 
-// export const DELETE_START = 'DELETE_START';
-// export const DELETE_SUCCESS = 'DELETE_SUCCESS';
-// export const DELETE_FAILURE ='DELETE_FAILURE';
+export const DELETE_START = 'DELETE_START';
+export const DELETE_SUCCESS = 'DELETE_SUCCESS';
+export const DELETE_FAILURE ='DELETE_FAILURE';
 
 export const fetchData = () => dispatch => {
     dispatch({ type: START_FETCH });
@@ -35,20 +35,20 @@ export const addData = newSmurf => dispatch => {
         .catch(err => dispatch({ type: ADD_FAILURE, payload: err }))
 }
 
-export const updateData = updatedInfo => dispatch => {
+export const updateData = updatedSmurf => dispatch => {
     dispatch({ type: UPDATE_START });
 
     axios
-    .put(`/api/client/${updatedInfo.id}`, updatedInfo)
+    .put(`http://localhost:3333/smurfs`, updatedSmurf)
     .then(res => dispatch({ type: UPDATE_SUCCESS, payload: res.data }))
     .catch(err => dispatch({ type: UPDATE_FAILURE, payload: err }))
 }
 
-// export const deleteData = client => dispatch => {
-//     dispatch({ type: DELETE_START });
+export const deleteData = smurf => dispatch => {
+    dispatch({ type: DELETE_START });
 
-//     axios
-//     .delete(`/api/client/${client.id}`)
-//     .then(res => dispatch({ type: DELETE_SUCCESS, payload: client.id }))
-//     .catch(err => dispatch({ type: DELETE_FAILURE, payload: err }))
-// }
+    axios
+    .delete(`http://localhost:3333/smurfs`)
+    .then(res => dispatch({ type: DELETE_SUCCESS, payload: smurf }))
+    .catch(err => dispatch({ type: DELETE_FAILURE, payload: err }))
+}

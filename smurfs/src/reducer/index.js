@@ -1,9 +1,11 @@
-import { START_FETCH, FETCH_SUCCESS, FETCH_FAILURE, START_ADD, ADD_SUCCESS, ADD_FAILURE, UPDATE_START, UPDATE_SUCCESS, UPDATE_FAILURE } from '../actions';
+import { START_FETCH, FETCH_SUCCESS, FETCH_FAILURE, START_ADD, ADD_SUCCESS, ADD_FAILURE, UPDATE_START, UPDATE_SUCCESS, UPDATE_FAILURE, DELETE_START, DELETE_SUCCESS, DELETE_FAILURE } from '../actions';
 
 const initialState = {
     smurfs: [],
     isFetching: false,
     isAdding: false,
+    isUpdating: false,
+    isDeleting: false,
     error: ''
 }
 
@@ -70,25 +72,25 @@ const reducer = (state = initialState, action) => {
                 isUpdating: false
             }
         //DELETING FINITE STATE MACHINE
-        // case DELETE_START:
-        //     return {
-        //         ...state,
-        //         isDeleting: true,
-        //         error: ''
-        //     }
-        // case DELETE_SUCCESS:
-        //     return {
-        //         ...state,
-        //         isDeleting: false,
-        //         error: '',
-        //         smurfs: state.smurfs.filter(item => { return item.id !== action.payload })
-        //     }
-        // case DELETE_FAILURE:
-        //     return {
-        //         ...state,
-        //         error: action.payload,
-        //         isDeleting: false
-        //     }
+        case DELETE_START:
+            return {
+                ...state,
+                isDeleting: true,
+                error: ''
+            }
+        case DELETE_SUCCESS:
+            return {
+                ...state,
+                isDeleting: false,
+                error: '',
+                smurfs: state.smurfs.filter(item => { return item.id !== action.payload.id })
+            }
+        case DELETE_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                isDeleting: false
+            }
         default:
             return state;
     }
