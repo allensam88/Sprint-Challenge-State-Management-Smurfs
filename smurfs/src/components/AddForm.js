@@ -88,6 +88,7 @@ const AddForm = props => {
                         placeholder="Name"
                         onChange={handleChanges}
                         value={smurf.name}
+                        autoComplete='off'
                     />
                     <input
                         id="age"
@@ -96,6 +97,7 @@ const AddForm = props => {
                         placeholder="age"
                         onChange={handleChanges}
                         value={smurf.age}
+                        autoComplete='off'
                     />
                     <input
                         id="height"
@@ -104,6 +106,7 @@ const AddForm = props => {
                         placeholder="height"
                         onChange={handleChanges}
                         value={smurf.height}
+                        autoComplete='off'
                     />
 
                     <button type="submit">Add Smurf</button>
