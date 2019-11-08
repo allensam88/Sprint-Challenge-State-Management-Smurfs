@@ -4,13 +4,30 @@ import List from './List';
 import AddForm from './AddForm';
 import UpdateForm from './UpdateForm';
 import Delete from './Delete';
-
+import smurfPic from '../image/smurfs-villagers.jpg'
+import styled from 'styled-components';
 import "./App.css";
 
-const App = props => {
+const StyledTitle = styled.h1`
+    border: 5px solid #EE2B07;
+    border-radius: 10px;
+    background-color: #DDD300;
+    width: 500px;
+    margin: 0 auto;
+`;
+
+const StyledImage = styled.img`
+    border: 5px solid #EE2B07;
+    border-radius: 10px;    
+    width: 500px;
+    margin: 10px;
+`;
+
+const App = () => {
     return (
         <div className="App">
-            <h1>SMURF VILLAGERS</h1>
+            <StyledTitle>SMURF VILLAGERS!</StyledTitle>
+            <StyledImage src={smurfPic} alt='brainy smurf' />
             <Route exact path="/" component={List} />
             <Route path="/add-form/" component={AddForm} />
             <Route path="/update-form/" component={UpdateForm} />
