@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchData } from '../actions';
+import AddFormModal from '../components/AddFormModal';
 import Card from './Card';
 import styled from 'styled-components'
 
-const StyledLink = styled(Link)`
-    text-decoration: none;
+const StyledButton = styled.button`
+    font-size: 20px;
     border: 1px solid #EE2B07;
     border-radius: 5px;
     margin: 5px;
@@ -27,9 +27,37 @@ const StyledList = styled.div`
 `;
 
 const List = props => {
+    const [addModal, setAddModal] = useState(false);
+    const [editModal, setEditModal] = useState(false);
+    const [deleteModal, setDeleteModal] = useState(false);
+
+    const openAdd = () => {
+        setAddModal(true);
+    }
+
+    const closeAdd = () => {
+        setAddModal(false);
+    }
+
+    const openEdit = () => {
+        setEditModal(true);
+    }
+
+    const closeEdit = () => {
+        setEditModal(false);
+    }
+
+    const openDelete = () => {
+        setDeleteModal(true);
+    }
+
+    const closeDelete = () => {
+        setDeleteModal(false);
+    }
+    
     useEffect(() => {
         props.fetchData();
-    }, [])
+    }, [addModal, editModal])
 
     if (!props) {
         return (
@@ -38,10 +66,11 @@ const List = props => {
     } else {
         return (
             <div>
-                <StyledLink to={`/add-form/`}>Add Villager</StyledLink>
+                <AddFormModal addModal={addModal} closeAdd={closeAdd} />
+                <StyledButton type='button' onClick={openAdd}>Add Villager</StyledButton>
                 <StyledList>
                     {props.smurfs.map(smurf => {
-                        return <Card key={smurf.id} smurf={smurf} />
+                        return <Card key={smurf.id} smurf={smurf} editModal={editModal} deleteModal={deleteModal} openEdit={openEdit} closeEdit={closeEdit} openDelete={openDelete} closeDelete={closeDelete}/>
                     })}
                 </StyledList>
             </div>

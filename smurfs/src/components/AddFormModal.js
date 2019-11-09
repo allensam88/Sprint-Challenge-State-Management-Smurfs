@@ -35,8 +35,10 @@ border: 1px solid #EE2B07;
     }
 `;
 
-const AddForm = props => {
+const AddFormModal = props => {
     const [smurf, setSmurf] = useState({ name: "", age: "", height: "" });
+
+    const showHideClassName = props.addModal ? "modal display-block" : "modal display-none";
 
     const handleChanges = event => {
         setSmurf({ ...smurf, [event.target.name]: event.target.value });
@@ -57,7 +59,7 @@ const AddForm = props => {
             age: "",
             height: ""
         });
-        props.history.push('/')
+        props.closeAdd();
     };
 
     if (props.isAdding) {
@@ -67,38 +69,39 @@ const AddForm = props => {
     } else {
 
         return (
-            <div>
-                <StyledForm onSubmit={submitForm}>
-
-                    <StyledInput
-                        id="name"
-                        type="text"
-                        name="name"
-                        placeholder="name"
-                        onChange={handleChanges}
-                        value={smurf.name}
-                        autoComplete='off'
-                    />
-                    <StyledInput
-                        id="age"
-                        type="text"
-                        name="age"
-                        placeholder="age"
-                        onChange={handleChanges}
-                        value={smurf.age}
-                        autoComplete='off'
-                    />
-                    <StyledInput
-                        id="height"
-                        type="text"
-                        name="height"
-                        placeholder="height"
-                        onChange={handleChanges}
-                        value={smurf.height}
-                        autoComplete='off'
-                    />
-                    <StyledButton type="submit">Add Smurf</StyledButton>
-                </StyledForm>
+            <div className={showHideClassName}>
+                <section className="modal-main">
+                    <StyledForm onSubmit={submitForm}>
+                        <StyledInput
+                            id="name"
+                            type="text"
+                            name="name"
+                            placeholder="name"
+                            onChange={handleChanges}
+                            value={smurf.name}
+                            autoComplete='off'
+                        />
+                        <StyledInput
+                            id="age"
+                            type="text"
+                            name="age"
+                            placeholder="age"
+                            onChange={handleChanges}
+                            value={smurf.age}
+                            autoComplete='off'
+                        />
+                        <StyledInput
+                            id="height"
+                            type="text"
+                            name="height"
+                            placeholder="height"
+                            onChange={handleChanges}
+                            value={smurf.height}
+                            autoComplete='off'
+                        />
+                        <StyledButton>Add Smurf</StyledButton>
+                    </StyledForm>
+                </section>
             </div>
         );
     }
@@ -110,4 +113,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { addData })(AddForm);
+export default connect(mapStateToProps, { addData })(AddFormModal);

@@ -1,9 +1,5 @@
 import React from "react";
-import { Route } from 'react-router-dom';
 import List from './List';
-import AddForm from './AddForm';
-import UpdateForm from './UpdateForm';
-import Delete from './Delete';
 import smurfPic from '../image/smurfs-villagers.jpg'
 import styled from 'styled-components';
 import "./App.css";
@@ -28,10 +24,7 @@ const App = () => {
         <div className="App">
             <StyledTitle>SMURF VILLAGERS!</StyledTitle>
             <StyledImage src={smurfPic} alt='brainy smurf' />
-            <Route exact path="/" component={List} />
-            <Route path="/add-form/" component={AddForm} />
-            <Route path="/update-form/" component={UpdateForm} />
-            <Route path="/delete/" component={Delete} />
+            <List />
         </div>
     );
 
