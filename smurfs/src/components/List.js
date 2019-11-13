@@ -28,7 +28,6 @@ const StyledList = styled.div`
 
 const List = props => {
     const [addModal, setAddModal] = useState(false);
-    const [editModal, setEditModal] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
 
     const openAdd = () => {
@@ -37,14 +36,6 @@ const List = props => {
 
     const closeAdd = () => {
         setAddModal(false);
-    }
-
-    const openEdit = () => {
-        setEditModal(true);
-    }
-
-    const closeEdit = () => {
-        setEditModal(false);
     }
 
     const openDelete = () => {
@@ -57,7 +48,7 @@ const List = props => {
     
     useEffect(() => {
         props.fetchData();
-    }, [addModal, editModal])
+    }, [addModal])
 
     if (!props) {
         return (
@@ -70,7 +61,7 @@ const List = props => {
                 <StyledButton type='button' onClick={openAdd}>Add Villager</StyledButton>
                 <StyledList>
                     {props.smurfs.map(smurf => {
-                        return <Card key={smurf.id} smurf={smurf} editModal={editModal} deleteModal={deleteModal} openEdit={openEdit} closeEdit={closeEdit} openDelete={openDelete} closeDelete={closeDelete}/>
+                        return <Card key={smurf.id} smurf={smurf} deleteModal={deleteModal} openDelete={openDelete} closeDelete={closeDelete}/>
                     })}
                 </StyledList>
             </div>

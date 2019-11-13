@@ -1,5 +1,5 @@
 import React from 'react'
-import EditFormModal from './EditFormModal';
+import { Link } from 'react-router-dom';
 import DeleteModal from './DeleteModal';
 import styled from 'styled-components'
 
@@ -27,15 +27,19 @@ const StyledButton = styled.button`
     }
 `;
 
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: black;
+`;
+
 const Card = props => {
     return (
         <StyledCard>
             <h3>{props.smurf.name}</h3>
             <p>Age: {props.smurf.age}</p>
             <p>Height: {props.smurf.height}</p>
-            <EditFormModal smurf={props.smurf} editModal={props.editModal} closeEdit={props.closeEdit} />
             <DeleteModal smurf={props.smurf} deleteModal={props.deleteModal} closeDelete={props.closeDelete} />
-            <StyledButton type='button' onClick={props.openEdit}>edit</StyledButton>
+            <StyledButton><StyledLink to={`/edit/${props.smurf.id}`}>edit</StyledLink></StyledButton>
             <StyledButton type='button' onClick={props.openDelete}>delete</StyledButton>
         </StyledCard>
     )
